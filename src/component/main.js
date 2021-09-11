@@ -15,7 +15,7 @@ function App({ match, history }) {
     return (
         <div className="App">
             {modal == true ? <Modal setmodal={setmodal} /> : ''}
-            <Route render={({ match, history }) => {
+            <Route render={({ match, history }) => (
                 <React.Fragment>
                     <Route exact path={'/mainpage'} component={Fristpage} >
                         <Fristpage history={history} />
@@ -24,7 +24,7 @@ function App({ match, history }) {
                         <Secondpage history={history} match={match} setmodal={setmodal} />
                     </Route>
                 </React.Fragment>
-            }
+            )
             } >
             </Route>
             <button onClick={() => setmodal(true)}>모달띄우기</button>

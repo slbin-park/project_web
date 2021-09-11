@@ -6,16 +6,15 @@ import 'aos/dist/aos.css';
 import Axios from 'axios';
 
 function Secondpage({ match, setmodal, history }) {
-    console.log(match)
-    console.log(history.location)
+    let id = history.location.pathname.split('/mainpage/')[1]
     const [data, setdata] = useState()
 
     useEffect(() => {
         getproject()
     }, [])
 
-    const getproject = async (id) => {
-        await Axios.get("http://172.30.1.20:8000/api/v1/activity/" + match.params.id + '/', {
+    const getproject = async () => {
+        await Axios.get("http://172.30.1.20:8000/api/v1/activity/" + id + '/', {
         }).then((response) => {
             setdata(response.data)
         })
@@ -24,13 +23,12 @@ function Secondpage({ match, setmodal, history }) {
             });
     }
 
-
     const Print_box = () => {
         const arr = []
         data.data.map((v) => {
             arr.push(
                 <div className='large_box'>
-                    <img onClick={() => setmodal(true)} className='img_box' src={'http://172.30.1.23:8000' + v.image}></img>
+                    <img onClick={() => setmodal(true)} className='img_box' src={'http://172.30.1.20:8000' + v.image}></img>
                     <div className='text_box'>
                         {v.title}
                     </div>
